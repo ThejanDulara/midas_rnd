@@ -119,7 +119,7 @@ export default function Profile() {
             <h1 style={leftTitle}>Your Media Profile</h1>
             <p style={leftText}>
               Manage your account details and credentials. Keep your information
-              up to date to stay connected with the MTM Group Media AI Research Hub.
+              up to date to stay connected with the Midas Media AI Research Hub.
             </p>
           </div>
         </div>

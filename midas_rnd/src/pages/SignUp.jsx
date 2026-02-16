@@ -107,7 +107,7 @@ export default function SignUp() {
                 filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
               }}
             />
-            <h1 style={leftTitle}>Join MTM Group</h1>
+            <h1 style={leftTitle}>Join Midas Media</h1>
             <p style={leftText}>
               Be a part of Sri Lanka's leading AI-driven media intelligence team.
               Let's build smarter insights and meaningful media solutions together.
@@ -122,7 +122,7 @@ export default function SignUp() {
               <div style={iconCircle}>📋</div>
               <h2 style={formTitle}>Create Account</h2>
               <p style={formSubtitle}>
-                Join MTM Group AI Research Hub
+                Join Midas Media AI Research Hub
               </p>
             </div>
 

@@ -19,14 +19,14 @@ function Header() {
       {/* Center: Logo + Company Name */}
       <div style={styles.center}>
         <img src="/company-logo.png" alt="MTM Logo" style={styles.logo} />
-        <h1 style={styles.title}>MTM Group</h1>
+        <h1 style={styles.title}>Midas Media (PVT) LTD</h1>
       </div>
 
       {/* Right: App context / User */}
       <div style={styles.right}>
         {!user ? (
           <>
-            <span style={styles.environment}>MTM Group AI Research Hub</span>
+            <span style={styles.environment}>Midas Media AI Research Hub</span>
             <Link to="/signin" style={styles.signinBtn}>Sign In</Link>
           </>
         ) : (

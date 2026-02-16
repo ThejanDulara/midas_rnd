@@ -94,7 +94,7 @@ export default function Landing() {
               textAlign: "center",
             }}
           >
-            The MTM Group AI Research Hub is where innovation meets media
+            The Midas Media AI Research Hub is where innovation meets media
             intelligence. We focus on AI-driven research, data analytics, and
             automation to shape smarter, faster, and more efficient media
             strategies across the Sri Lankan advertising ecosystem.
@@ -124,7 +124,7 @@ export default function Landing() {
               color: "#3bb9af",
             }}
           >
-            MTM Group AI Research Hub
+            Midas Media AI Research Hub
           </h1>
           <p style={{ fontSize: 20, color: "#4a5568", marginBottom: 40 }}>
             Smart media decisions powered by AI & Analytics.

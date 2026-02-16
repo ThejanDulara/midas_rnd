@@ -136,7 +136,7 @@ export default function SignIn() {
               <div style={iconCircle}>🤖</div>
               <h2 style={formTitle}>Welcome Back</h2>
               <p style={formSubtitle}>
-                Sign in to your MTM Group account
+                Sign in to your Midas Media account
               </p>
             </div>
 
