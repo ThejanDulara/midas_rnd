@@ -15,7 +15,7 @@ def create_app():
     # --- JWT Setup ---
     jwt = JWTManager(app)
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_COOKIE_DOMAIN"] = "tsmbackend-production.up.railway.app"  # ✅ share across all subdomains
+    app.config["JWT_COOKIE_DOMAIN"] = "midasrnd-production.up.railway.app"  # ✅ share across all subdomains
     app.config["JWT_COOKIE_SECURE"] = True  # ✅ always true in production
     app.config["JWT_COOKIE_SAMESITE"] = "None"  # ✅ required for cross-domain cookie
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
