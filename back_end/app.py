@@ -15,7 +15,7 @@ def create_app():
     # --- JWT Setup ---
     jwt = JWTManager(app)
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_COOKIE_DOMAIN"] = "mtmbackend-production.up.railway.app"  # ✅ share across all subdomains
+    app.config["JWT_COOKIE_DOMAIN"] = "midasrnd-production.up.railway.app"  # ✅ share across all subdomains
     app.config["JWT_COOKIE_SECURE"] = True  # ✅ always true in production
     app.config["JWT_COOKIE_SAMESITE"] = "None"  # ✅ required for cross-domain cookie
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
@@ -44,17 +44,17 @@ def create_app():
         allowed_origins = [
             "http://localhost:5173",
             "http://127.0.0.1:5173",
-            "https://www.mtmgroup.agency",
-            "https://copt.mtmgroup.agency",
-            "https://opt.mtmgroup.agency",
-            "https://tmrp.mtmgroup.agency",
-            "https://mo.mtmgroup.agency",
-            "https://mmmr.mtmgroup.agency",
-            "https://cts.mtmgroup.agency",
-            "https://pbi.mtmgroup.agency",
-            "https://pm.mtmgroup.agency",
-            "https://fe.mtmgroup.agency",
-            "https://bp.mtmgroup.agency",
+            "https://www.midasmedia.agency",
+            "https://copt.midasmedia.agency",
+            "https://opt.midasmedia.agency",
+            "https://tmrp.midasmedia.agency",
+            "https://mo.midasmedia.agency",
+            "https://mmmr.midasmedia.agency",
+            "https://cts.midasmedia.agency",
+            "https://pbi.midasmedia.agency",
+            "https://pm.midasmedia.agency",
+            "https://fe.midasmedia.agency",
+            "https://bp.midasmedia.agency",
         ]
         # ✅ Dynamically handle future subdomains
         if origin and origin.endswith(".mtmgroup.agency"):
