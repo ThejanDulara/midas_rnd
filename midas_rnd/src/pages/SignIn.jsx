@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn() {
-  const { signin } = useAuth();
+  const { signin, user } = useAuth();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [forgotOpen, setForgotOpen] = React.useState(false);
@@ -23,6 +23,18 @@ export default function SignIn() {
   const params = new URLSearchParams(useLocation().search);
   const redirect = params.get("redirect") || "/dashboard";
 
+  // ✅ Redirect if already logged in (or upon successful login)
+  React.useEffect(() => {
+    if (user) {
+      let decodedRedirect = redirect ? decodeURIComponent(redirect) : null;
+      if (decodedRedirect && decodedRedirect.startsWith("http")) {
+        window.location.href = decodedRedirect;
+      } else {
+        navigate(decodedRedirect || "/dashboard", { replace: true });
+      }
+    }
+  }, [user, navigate, redirect]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,15 +45,7 @@ export default function SignIn() {
 
     try {
       await signin(email, password);
-
-      // ✅ decode redirect safely
-      let decodedRedirect = redirect ? decodeURIComponent(redirect) : null;
-
-      if (decodedRedirect && decodedRedirect.startsWith("http")) {
-        window.location.href = decodedRedirect; // full URL (subdomain)
-      } else {
-        navigate(decodedRedirect || "/dashboard", { replace: true });
-      }
+      // Navigation is now handled by the useEffect above when 'user' state updates
     } catch (err) {
       const status = err.response?.status;
       const message = err.response?.data?.error || "Sign-in failed";
