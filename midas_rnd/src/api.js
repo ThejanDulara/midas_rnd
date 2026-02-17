@@ -4,7 +4,7 @@ import axios from "axios";
 const baseURL =
   import.meta.env.MODE === "development"
     ? "/api" // handled by Vite proxy (goes to localhost:8000)
-    : "https://tsmbackend-production.up.railway.app/api"; // 👈 replace with your actual Railway backend URL
+    : "https://midasrnd-production.up.railway.app"; // 👈 replace with your actual Railway backend URL
 
 export const api = axios.create({
   baseURL,
