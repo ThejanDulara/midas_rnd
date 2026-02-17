@@ -122,7 +122,7 @@ export default function Admin() {
                         <img
                           src={
                             u.profile_pic
-                              ? `${import.meta.env.VITE_API_BASE_URL || "https://mtmbackend-production.up.railway.app"}${u.profile_pic}`
+                              ? `${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${u.profile_pic}`
                               : "/static/default-avatar.png"
                           }
                           alt="Profile"
@@ -188,7 +188,7 @@ export default function Admin() {
                         <img
                           src={
                             u.profile_pic
-                              ? `${import.meta.env.VITE_API_BASE_URL || "https://mtmbackend-production.up.railway.app"}${u.profile_pic}`
+                              ? `${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${u.profile_pic}`
                               : "/static/default-avatar.png"
                           }
                           alt="Profile"
