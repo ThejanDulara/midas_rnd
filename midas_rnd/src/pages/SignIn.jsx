@@ -27,13 +27,13 @@ export default function SignIn() {
   React.useEffect(() => {
     if (user) {
       let decodedRedirect = redirect ? decodeURIComponent(redirect) : null;
-      if (decodedRedirect && decodedRedirect.startsWith("http")) {
-        window.location.href = decodedRedirect;
-      } else {
-        navigate(decodedRedirect || "/dashboard", { replace: true });
+      if (!decodedRedirect || decodedRedirect === "null") {
+        decodedRedirect = "/dashboard";
       }
+      // Force full reload to ensure cookies are picked up
+      window.location.href = decodedRedirect;
     }
-  }, [user, navigate, redirect]);
+  }, [user, redirect]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
