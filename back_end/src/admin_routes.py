@@ -177,7 +177,7 @@ def delete_user(user_id):
                 <p>Dear {user['first_name']},</p>
                 <p>Your account on the <b>Midas Media Portal</b> has been deleted by an administrator.</p>
                 <p>If you believe this was a mistake, please contact the admin team.</p>
-                <p><a href="https://www.mtmgroup.agency" target="_blank">Click here to contact admin</a></p>
+                <p><a href="https://www.midasmedia.agency" target="_blank">Click here to contact admin</a></p>
                 <p>— Midas Media — </p>
             """
             try:

@@ -57,7 +57,7 @@ def create_app():
             "https://bp.midasmedia.agency",
         ]
         # ✅ Dynamically handle future subdomains
-        if origin and origin.endswith(".mtmgroup.agency"):
+        if origin and origin.endswith(".midasmedia.agency"):
             response.headers["Access-Control-Allow-Origin"] = origin
         elif origin in allowed_origins:
             response.headers["Access-Control-Allow-Origin"] = origin
