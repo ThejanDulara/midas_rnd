@@ -1,52 +1,66 @@
-from flask import Flask, request
+from flask import Flask
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
+
 from src.db import init_db
 from src.auth_routes import auth_bp
 from src.user_routes import user_bp
 from src.admin_routes import admin_bp
-from src.config import Config
 from src.public_routes import public_bp
+from src.config import Config
+
 import os
+
 
 def create_app():
     app = Flask(__name__, static_folder="static", static_url_path="/static")
     app.config.from_object(Config)
 
-    # --- JWT Setup ---
-    jwt = JWTManager(app)
-    app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_COOKIE_DOMAIN"] = "midasrnd-production.up.railway.app"  # ✅ share across all subdomains
-    app.config["JWT_COOKIE_SECURE"] = True  # ✅ always true in production
-    app.config["JWT_COOKIE_SAMESITE"] = "None"  # ✅ required for cross-domain cookie
-    app.config["JWT_COOKIE_CSRF_PROTECT"] = False
-    app.config["JWT_ACCESS_COOKIE_PATH"] = "/"
+    # =========================================================
+    # JWT CONFIG (MUST be set BEFORE JWTManager)
+    # =========================================================
+    app.config.update(
+        JWT_TOKEN_LOCATION=["cookies"],
+        JWT_COOKIE_DOMAIN=".midasmedia.agency",   # ✅ correct cross-subdomain cookie
+        JWT_COOKIE_SECURE=True,                   # ✅ HTTPS only (production)
+        JWT_COOKIE_SAMESITE="None",               # ✅ required for cross-site cookies
+        JWT_COOKIE_CSRF_PROTECT=False,
+        JWT_ACCESS_COOKIE_PATH="/",
+    )
 
-    # --- JWT Error Handlers (for debugging 422 etc.) ---
+    jwt = JWTManager(app)
+
+    # =========================================================
+    # JWT ERROR HANDLERS (safe for CORS)
+    # =========================================================
     @jwt.unauthorized_loader
-    def unauthorized_callback(callback):
-        print("❌ Unauthorized or missing JWT")
+    def unauthorized_callback(reason):
+        print("❌ Unauthorized:", reason)
         return {"error": "Missing or invalid JWT"}, 401
 
     @jwt.invalid_token_loader
-    def invalid_token_callback(error):
-        print("❌ Invalid JWT token:", error)
+    def invalid_token_callback(reason):
+        print("❌ Invalid JWT:", reason)
         return {"error": "Invalid token"}, 422
 
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
-        print("⚠️ Token expired for user:", jwt_payload)
+        print("⚠️ Token expired:", jwt_payload)
         return {"error": "Token expired"}, 401
 
-    # --- ✅ CORS Setup (Allow cookies from all TSM subdomains) ---
-    @app.after_request
-    def add_cors_headers(response):
-        origin = request.headers.get("Origin")
-        allowed_origins = [
+    # =========================================================
+    # CORS CONFIG (THIS HANDLES OPTIONS AUTOMATICALLY)
+    # =========================================================
+    CORS(
+        app,
+        supports_credentials=True,
+        origins=[
             "http://localhost:5173",
             "http://127.0.0.1:5173",
+            "https://midasmedia.agency",
             "https://www.midasmedia.agency",
-            "https://copt.midasmedia.agency",
             "https://opt.midasmedia.agency",
+            "https://copt.midasmedia.agency",
             "https://tmrp.midasmedia.agency",
             "https://mo.midasmedia.agency",
             "https://mmmr.midasmedia.agency",
@@ -55,20 +69,14 @@ def create_app():
             "https://pm.midasmedia.agency",
             "https://fe.midasmedia.agency",
             "https://bp.midasmedia.agency",
-        ]
-        # ✅ Dynamically handle future subdomains
-        if origin and origin.endswith(".midasmedia.agency"):
-            response.headers["Access-Control-Allow-Origin"] = origin
-        elif origin in allowed_origins:
-            response.headers["Access-Control-Allow-Origin"] = origin
+        ],
+    )
 
-        response.headers["Access-Control-Allow-Credentials"] = "true"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
-        return response
-
-    # --- Initialize DB + Routes ---
+    # =========================================================
+    # INIT DB + ROUTES
+    # =========================================================
     init_db(app)
+
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(user_bp, url_prefix="/api/user")
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
