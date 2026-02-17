@@ -23,17 +23,12 @@ export default function SignIn() {
   const params = new URLSearchParams(useLocation().search);
   const redirect = params.get("redirect") || "/dashboard";
 
-  // ✅ Redirect if already logged in (or upon successful login)
+  /* 
+  // REMOVED: Automatic redirect via useEffect causing issues
   React.useEffect(() => {
-    if (user) {
-      let decodedRedirect = redirect ? decodeURIComponent(redirect) : null;
-      if (!decodedRedirect || decodedRedirect === "null") {
-        decodedRedirect = "/dashboard";
-      }
-      // Force full reload to ensure cookies are picked up
-      window.location.href = decodedRedirect;
-    }
-  }, [user, redirect]);
+    if (user) { ... }
+  }, [user, redirect]); 
+  */
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +40,15 @@ export default function SignIn() {
 
     try {
       await signin(email, password);
-      // Navigation is now handled by the useEffect above when 'user' state updates
+
+      // ✅ decode redirect safely
+      let decodedRedirect = redirect ? decodeURIComponent(redirect) : null;
+
+      if (decodedRedirect && decodedRedirect.startsWith("http")) {
+        window.location.href = decodedRedirect; // full URL (subdomain)
+      } else {
+        navigate(decodedRedirect || "/dashboard", { replace: true });
+      }
     } catch (err) {
       const status = err.response?.status;
       const message = err.response?.data?.error || "Sign-in failed";
