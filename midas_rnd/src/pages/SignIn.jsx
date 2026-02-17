@@ -115,8 +115,8 @@ export default function SignIn() {
         <div style={leftPanel}>
           <div style={leftInner}>
             <img
-              src="/TS-GARA-Mask.png"
-              alt="TS GARA Mask"
+              src="/MTM.png"
+              alt="MTM"
               style={{
                 height: 400,
                 marginBottom: 30,
@@ -137,7 +137,7 @@ export default function SignIn() {
               <div style={iconCircle}>🤖</div>
               <h2 style={formTitle}>Welcome Back</h2>
               <p style={formSubtitle}>
-                Sign in to your Third Shift Media account
+                Sign in to your Midas Media account
               </p>
             </div>
 
