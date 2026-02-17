@@ -26,7 +26,7 @@ export default function Profile() {
       });
       if (user.profile_pic)
         setPreview(
-          `${import.meta.env.VITE_API_BASE_URL || "https://api.midasmedia.agency"}${user.profile_pic}`
+          `${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${user.profile_pic}`
         );
     }
   }, [user]);
@@ -130,7 +130,7 @@ export default function Profile() {
             <div style={{ textAlign: "center", marginBottom: 24 }}>
                 {user.profile_pic ? (
                   <img
-                    src={`${import.meta.env.VITE_API_BASE_URL || "https://api.midasmedia.agency"}${user.profile_pic}`}
+                    src={`${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${user.profile_pic}`}
                     alt="Profile"
                     style={headerImg}
                   />
