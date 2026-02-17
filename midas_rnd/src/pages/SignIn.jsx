@@ -115,8 +115,8 @@ export default function SignIn() {
         <div style={leftPanel}>
           <div style={leftInner}>
             <img
-              src="/MTM.png"
-              alt="MTM"
+              src="/TS-GARA-Mask.png"
+              alt="TS GARA Mask"
               style={{
                 height: 400,
                 marginBottom: 30,
