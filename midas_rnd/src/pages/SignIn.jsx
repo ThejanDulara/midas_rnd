@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn() {
-  const { signin, user } = useAuth();
+  const { signin } = useAuth();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [forgotOpen, setForgotOpen] = React.useState(false);
@@ -22,13 +22,6 @@ export default function SignIn() {
   const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
   const redirect = params.get("redirect") || "/dashboard";
-
-  /* 
-  // REMOVED: Automatic redirect via useEffect causing issues
-  React.useEffect(() => {
-    if (user) { ... }
-  }, [user, redirect]); 
-  */
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -125,13 +118,14 @@ export default function SignIn() {
               src="/MTM.png"
               alt="MTM"
               style={{
-                height: 500,
+                height: 400,
+                marginBottom: 30,
                 filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
               }}
             />
             <h1 style={leftTitle}>Media Intelligence Platform</h1>
             <p style={leftText}>
-              Where Courage Meets Clarity, The Lions of Media Leadership Powering Data-Driven Business Growth.
+              Meet the Daredevils in the Media Scene Who Curate Hand Crafted Business Solutions By Harnessing the Power of Data Driven Local insights.
             </p>
           </div>
         </div>
@@ -143,7 +137,7 @@ export default function SignIn() {
               <div style={iconCircle}>🤖</div>
               <h2 style={formTitle}>Welcome Back</h2>
               <p style={formSubtitle}>
-                Sign in to your Midas Media account
+                Sign in to your Third Shift Media account
               </p>
             </div>
 
