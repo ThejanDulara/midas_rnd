@@ -5,17 +5,17 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const tools = [
-  { name:'Communication Objective Prioritization Tool', url:'https://copt.midasmedia.agency/', icon:'🧠', description:'Data-driven prioritization engine for communication strategies' },
-  { name:'Campaign Touchpoint Scorer', url:'https://cts.midasmedia.agency/', icon:'📊', description:'Campaign Touchpoint Prioritization via Weighted Communication Task Scoring' },
-  { name:'Television Media Scheduling Optimization Tool', url:'https://opt.midasmedia.agency/', icon:'🤖', description:'Smart media spot allocator using mathematical optimization' },
-  { name:'Multimedia Reach Analyzer', url:'https://mmmr.midasmedia.agency/', icon:'📈', description:'ML & genetic algorithm-based optimization for media mix' },
-  { name:'Media Objective Identifier', url:'https://mo.midasmedia.agency/', icon:'🧮', description:'Filtering media objectives to streamline decision-making' },
-  { name:'Television Media Reach Predictor', url:'https://tmrp.midasmedia.agency/', icon:'📺', description:'ML-based TV reach prediction for smarter planning' },
-  { name:'Power BI Dashboards', url:'https://pbi.midasmedia.agency/', icon:'📊', description:'Centralized library of Power BI dashboards' },
-  { name:'Project Management tool', url:'https://pm.midasmedia.agency/', icon:'🗃️', description:'Manage all projects in one centralized workspace' },
-  { name:'Joseph W. Ostrow – Frequency Estimator ', url:'https://fe.midasmedia.agency/', icon:'📐️', description:'Frequency planning tool based on the Ostrow model for effective reach optimization' },
-  { name:'SOV/SOM Based Budget Planning tool', url:'https://bp.midasmedia.agency/', icon:'🎯', description:'Manage all projects in one centralized workspace' },
-  { name:'Coming Soon', url:'https://www.midasmedia.agency/dashboard', icon:'✨', description:'AI-driven modules currently under development' },
+  { name:'Communication Objective Prioritization Tool', url:'https://copt.midasmedialk.agency/', icon:'🧠', description:'Data-driven prioritization engine for communication strategies' },
+  { name:'Campaign Touchpoint Scorer', url:'https://cts.midasmedialk.agency/', icon:'📊', description:'Campaign Touchpoint Prioritization via Weighted Communication Task Scoring' },
+  { name:'Television Media Scheduling Optimization Tool', url:'https://opt.midasmedialk.agency/', icon:'🤖', description:'Smart media spot allocator using mathematical optimization' },
+  { name:'Multimedia Reach Analyzer', url:'https://mmmr.midasmedialk.agency/', icon:'📈', description:'ML & genetic algorithm-based optimization for media mix' },
+  { name:'Media Objective Identifier', url:'https://mo.midasmedialk.agency/', icon:'🧮', description:'Filtering media objectives to streamline decision-making' },
+  { name:'Television Media Reach Predictor', url:'https://tmrp.midasmedialk.agency/', icon:'📺', description:'ML-based TV reach prediction for smarter planning' },
+  { name:'Power BI Dashboards', url:'https://pbi.midasmedialk.agency/', icon:'📊', description:'Centralized library of Power BI dashboards' },
+  { name:'Project Management tool', url:'https://pm.midasmedialk.agency/', icon:'🗃️', description:'Manage all projects in one centralized workspace' },
+  { name:'Joseph W. Ostrow – Frequency Estimator ', url:'https://fe.midasmedialk.agency/', icon:'📐️', description:'Frequency planning tool based on the Ostrow model for effective reach optimization' },
+  { name:'SOV/SOM Based Budget Planning tool', url:'https://bp.midasmedialk.agency/', icon:'🎯', description:'Manage all projects in one centralized workspace' },
+  { name:'Coming Soon', url:'https://www.midasmedialk.agency/dashboard', icon:'✨', description:'AI-driven modules currently under development' },
 ];
 
 export default function Dashboard() {

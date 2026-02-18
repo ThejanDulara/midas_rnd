@@ -21,7 +21,7 @@ def create_app():
     # =========================================================
     app.config.update(
         JWT_TOKEN_LOCATION=["cookies"],
-        JWT_COOKIE_DOMAIN=".midasmedia.agency",   # ✅ correct cross-subdomain cookie
+        JWT_COOKIE_DOMAIN=".midasmedialk.agency",   # ✅ correct cross-subdomain cookie
         JWT_COOKIE_SECURE=True,                   # ✅ HTTPS only (production)
         JWT_COOKIE_SAMESITE="None",               # ✅ required for cross-site cookies
         JWT_COOKIE_CSRF_PROTECT=False,
@@ -57,18 +57,18 @@ def create_app():
         origins=[
             "http://localhost:5173",
             "http://127.0.0.1:5173",
-            "https://midasmedia.agency",
-            "https://www.midasmedia.agency",
-            "https://opt.midasmedia.agency",
-            "https://copt.midasmedia.agency",
-            "https://tmrp.midasmedia.agency",
-            "https://mo.midasmedia.agency",
-            "https://mmmr.midasmedia.agency",
-            "https://cts.midasmedia.agency",
-            "https://pbi.midasmedia.agency",
-            "https://pm.midasmedia.agency",
-            "https://fe.midasmedia.agency",
-            "https://bp.midasmedia.agency",
+            "https://midasmedialk.agency",
+            "https://www.midasmedialk.agency",
+            "https://opt.midasmedialk.agency",
+            "https://copt.midasmedialk.agency",
+            "https://tmrp.midasmedialk.agency",
+            "https://mo.midasmedialk.agency",
+            "https://mmmr.midasmedialk.agency",
+            "https://cts.midasmedialk.agency",
+            "https://pbi.midasmedialk.agency",
+            "https://pm.midasmedialk.agency",
+            "https://fe.midasmedialk.agency",
+            "https://bp.midasmedialk.agency",
         ],
     )
 
