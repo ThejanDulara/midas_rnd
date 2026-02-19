@@ -60,7 +60,9 @@ export default function Profile() {
     const fd = new FormData();
     fd.append("profile_pic", file);
     try {
-      const { data } = await api.post("/user/profile-picture", fd);
+      const { data } = await api.post("/user/profile-picture", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       toast.success("Profile picture updated", { containerId: "profile" });
       setUser({ ...user, profile_pic: data.profile_pic });
     } catch {
@@ -106,8 +108,8 @@ export default function Profile() {
         <div style={leftPanel}>
           <div style={leftInner}>
             <img
-              src="/MTM.png"
-              alt="MTM"
+              src="/TS-GARA-Mask.png"
+              alt="TS GARA Mask"
               style={{
                 height: 400,
                 marginBottom: 30,
@@ -117,7 +119,7 @@ export default function Profile() {
             <h1 style={leftTitle}>Your Media Profile</h1>
             <p style={leftText}>
               Manage your account details and credentials. Keep your information
-              up to date to stay connected with the Midas Media AI Research Hub.
+              up to date to stay connected with the Third Shift Media AI Research Hub.
             </p>
           </div>
         </div>
@@ -126,15 +128,15 @@ export default function Profile() {
         <div style={rightPanel}>
           <div style={formBox}>
             <div style={{ textAlign: "center", marginBottom: 24 }}>
-              {user.profile_pic ? (
-                <img
-                  src={`${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${user.profile_pic}`}
-                  alt="Profile"
-                  style={headerImg}
-                />
-              ) : (
-                <div style={iconCircle}>👤</div>
-              )}
+                {user.profile_pic ? (
+                  <img
+                    src={`${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${user.profile_pic}`}
+                    alt="Profile"
+                    style={headerImg}
+                  />
+                ) : (
+                  <div style={iconCircle}>👤</div>
+                )}
               <h2 style={formTitle}>
                 {user.first_name} {user.last_name}
               </h2>
