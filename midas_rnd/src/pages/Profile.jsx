@@ -60,9 +60,7 @@ export default function Profile() {
     const fd = new FormData();
     fd.append("profile_pic", file);
     try {
-      const { data } = await api.post("/user/profile-picture", fd, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const { data } = await api.post("/user/profile-picture", fd);
       toast.success("Profile picture updated", { containerId: "profile" });
       setUser({ ...user, profile_pic: data.profile_pic });
     } catch {
@@ -128,15 +126,15 @@ export default function Profile() {
         <div style={rightPanel}>
           <div style={formBox}>
             <div style={{ textAlign: "center", marginBottom: 24 }}>
-                {user.profile_pic ? (
-                  <img
-                    src={`${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${user.profile_pic}`}
-                    alt="Profile"
-                    style={headerImg}
-                  />
-                ) : (
-                  <div style={iconCircle}>👤</div>
-                )}
+              {user.profile_pic ? (
+                <img
+                  src={`${import.meta.env.VITE_API_BASE_URL || "https://midasrnd-production.up.railway.app"}${user.profile_pic}`}
+                  alt="Profile"
+                  style={headerImg}
+                />
+              ) : (
+                <div style={iconCircle}>👤</div>
+              )}
               <h2 style={formTitle}>
                 {user.first_name} {user.last_name}
               </h2>

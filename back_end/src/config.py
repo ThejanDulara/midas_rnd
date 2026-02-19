@@ -24,6 +24,7 @@ class Config:
     # --- Application Config ---
     COOKIE_DOMAIN = os.getenv("COOKIE_DOMAIN", "localhost")
     FRONTEND_BASE = os.getenv("FRONTEND_BASE")
+    UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
 
     # --- Database Config ---
     MYSQL_HOST = os.getenv("MYSQL_HOST")

@@ -30,6 +30,8 @@ def update_profile():
     return jsonify({"message":"Profile updated"}), 200
 
 
+from werkzeug.utils import secure_filename
+
 @user_bp.post("/profile-picture")
 @jwt_required()
 def update_picture():
@@ -38,12 +40,27 @@ def update_picture():
     if not file:
         return jsonify({"error": "profile_pic file required"}), 400
 
-    # Save file
-    fname = f'{int(datetime.datetime.utcnow().timestamp())}_{file.filename}'
-    save_dir = os.path.join(app.static_folder, "uploads")
-    os.makedirs(save_dir, exist_ok=True)
-    save_path = os.path.join(save_dir, fname)
-    file.save(save_path)
+    # Determine save directory
+    # 1. Use UPLOAD_FOLDER from config if set
+    # 2. Fallback to app.static_folder/uploads
+    upload_dir = app.config.get("UPLOAD_FOLDER")
+    if not upload_dir:
+        upload_dir = os.path.join(app.static_folder, "uploads")
+    
+    os.makedirs(upload_dir, exist_ok=True)
+
+    # Secure filename and add timestamp
+    original_filename = secure_filename(file.filename)
+    fname = f'{int(datetime.datetime.utcnow().timestamp())}_{original_filename}'
+    save_path = os.path.join(upload_dir, fname)
+    
+    try:
+        file.save(save_path)
+    except Exception as e:
+        print(f"❌ Upload Error: {str(e)}")
+        return jsonify({"error": "Failed to save file"}), 500
+
+    # Path for DB and frontend
     pic_path = f"/static/uploads/{fname}"
 
     # Update DB
