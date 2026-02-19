@@ -17,13 +17,13 @@ def create_app():
     app.config.from_object(Config)
 
     # =========================================================
-    # JWT CONFIG (MUST be set BEFORE JWTManager)
+    # JWT CONFIG (Loaded from Config class)
     # =========================================================
     app.config.update(
         JWT_TOKEN_LOCATION=["cookies"],
-        JWT_COOKIE_DOMAIN=".midasmedialk.agency",   # ✅ correct cross-subdomain cookie
-        JWT_COOKIE_SECURE=True,                   # ✅ HTTPS only (production)
-        JWT_COOKIE_SAMESITE="None",               # ✅ required for cross-site cookies
+        JWT_COOKIE_DOMAIN=app.config.get("COOKIE_DOMAIN"),
+        JWT_COOKIE_SECURE=app.config.get("JWT_COOKIE_SECURE"),
+        JWT_COOKIE_SAMESITE=app.config.get("JWT_COOKIE_SAMESITE"),
         JWT_COOKIE_CSRF_PROTECT=False,
         JWT_ACCESS_COOKIE_PATH="/",
     )
@@ -69,6 +69,7 @@ def create_app():
             "https://pm.midasmedialk.agency",
             "https://fe.midasmedialk.agency",
             "https://bp.midasmedialk.agency",
+            "https://midasrnd-production.up.railway.app",
         ],
     )
 

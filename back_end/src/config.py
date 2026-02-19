@@ -22,7 +22,12 @@ class Config:
     JWT_REFRESH_CSRF_FIELD_NAME = "csrf_refresh_token"
 
     # --- Application Config ---
-    COOKIE_DOMAIN = os.getenv("COOKIE_DOMAIN", "localhost")
+    # In production, set COOKIE_DOMAIN=.midasmedialk.agency if using subdomains.
+    # Leaving it as None (default) will use the current host domain.
+    COOKIE_DOMAIN = os.getenv("COOKIE_DOMAIN")
+    if COOKIE_DOMAIN == "localhost":
+        COOKIE_DOMAIN = None
+    
     FRONTEND_BASE = os.getenv("FRONTEND_BASE")
     UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
 
